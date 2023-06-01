@@ -1,0 +1,11 @@
+{
+  "name": "go_fish",
+  "version": "1.0.0",
+  "description": "node for go fish",
+  "main": "main.js",
+  "scripts": {
+    "test": "\"go fish! oh oh!\""
+  },
+  "author": "Mikel GnZ",
+  "license": "ISC"
+}
