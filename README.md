@@ -2,6 +2,7 @@
 
 ---
 
-Go fish Go! oh! oh! oh!
 
-![Whistle](src/media/gotune.mp4)
+
+Go fish Go! oh! oh! oh!    
+![Fish!](/src/images/fish.png)
