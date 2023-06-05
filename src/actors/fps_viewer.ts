@@ -8,7 +8,7 @@ export class FPSViewer extends Actor {
 
     draw(ctx: CanvasRenderingContext2D, size: PointInterface, delta: number) {
         const fps = (1 / delta).toFixed(0);
-        ctx.font = '18px Consolas';
+        ctx.font = '18px American Typerwriter';
         ctx.fillStyle = '#000';
         ctx.fillText(`FPS: ${fps}`, this.position.x, this.position.y);
     }

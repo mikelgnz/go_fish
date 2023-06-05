@@ -1,5 +1,5 @@
 import { PointInterface } from '../types/point';
-import { ActorInterface } from '../types/actor';
+import { ActorInterface } from '../types/actor.d';
 
 export class Actor implements ActorInterface {
     constructor(public position: PointInterface) {

@@ -4,7 +4,7 @@ import { converAngleToRad } from '../utils/convertAngleToRad';
 import { PointInterface } from './../types/point.d';
 import { Actor } from './actor';
 
-export class Car extends Actor {
+export class Fish extends Actor {
     public angle: number;
     public rotationSpeed: number;
     public initialPosition: PointInterface;
@@ -14,6 +14,10 @@ export class Car extends Actor {
         super(position);
         this.angle = 0;
         this.rotationSpeed = 0;
+//         this.buttons = {
+//         up: false,
+//         down: false,
+//   };
         this.initialPosition = position;
         this.image = new Image();
         this.image.src = 'src/images/fish.png';
@@ -28,13 +32,18 @@ export class Car extends Actor {
     }
 
     update(delta: number, size: PointInterface) {
-        // Rotación
-        this.angle += this.rotationSpeed * (delta * 100);
-        this.rotationSpeed *= 0.98;
-
-        // Velocidad más aceleración
-        this.speed = this.speed * 0.98 + this.acceleration * (delta * 100);
-        this.acceleration *= 0.98;
+        let accelerate = 0;
+        // Calculate acceleration
+        // if (this.buttons.up) {
+        //   accelerate += 2;
+        // }
+        // if (this.buttons.down) {
+        //   accelerate -= 2;
+        // }
+        // this.acceleration = accelerate;
+    
+        //this.acceleration = this.acceleration * 0.98;
+        this.speed = (this.speed + this.acceleration) * 0.95;
 
         // Nueva posición
         const newPosition: PointInterface = {
