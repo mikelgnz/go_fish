@@ -4,7 +4,7 @@ import { converAngleToRad } from "../utils/convertAngleToRad";
 import { PointInterface } from "./../types/point.d";
 import { Actor } from "./actor";
 
-export class Fish extends Actor {
+export class Garbage extends Actor {
   public angle: number;
   public rotationSpeed: number;
   public initialPosition: PointInterface;
@@ -19,13 +19,8 @@ export class Fish extends Actor {
     super(position);
     this.angle = 0;
     this.rotationSpeed = 0;
-    this.buttons = {
-      up: false,
-      down: false,
-    };
     this.initialPosition = position;
     this.image = new Image();
-    this.image.src = "src/images/fish.svg";
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -58,30 +53,7 @@ export class Fish extends Actor {
       this.speed = 0;
     }
   }
-
-  keyboardEventDown(key: string) {
-    if (key === "ArrowLeft") {
-      this.rotationSpeed -= 2;
-    } else if (key === "ArrowRight") {
-      this.rotationSpeed += 2;
-    } else if (key === "ArrowUp") {
-      this.acceleration -= 10;
-    } else if (key === "ArrowDown") {
-      this.acceleration += 10;
-    }
   }
-
-  keyboardEventUp(key: string) {
-    switch (key) {
-      case "ArrowUp":
-        this.acceleration = 0;
-        break;
-      case "ArrowDown":
-        this.acceleration = 0;
-        break;
-    }
-  }
-
   restart() {
     this.position = this.initialPosition;
     this.angle = 0;
@@ -89,4 +61,4 @@ export class Fish extends Actor {
     this.speed = 0;
     this.acceleration = 0;
   }
-}
+
