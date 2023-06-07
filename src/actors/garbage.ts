@@ -1,10 +1,9 @@
 import { SizeInterface } from "../types/size";
 import { checkLimits } from "../utils/checkLimits";
 import { converAngleToRad } from "../utils/convertAngleToRad";
-import { PointInterface } from "./../types/point.d";
-import { Actor } from "./actor";
+import { PointInterface } from "./../types/point";
 
-export class Garbage extends Actor {
+export class Garbage {
   public angle: number;
   public rotationSpeed: number;
   public initialPosition: PointInterface;
@@ -16,11 +15,11 @@ export class Garbage extends Actor {
     public acceleration: number,
     public speed: number
   ) {
-    super(position);
-    this.angle = 0;
-    this.rotationSpeed = 0;
-    this.initialPosition = position;
+    this.angle = 2;
+    this.rotationSpeed = 10;
+    this.initialPosition = { ...position };
     this.image = new Image();
+    this.image.src = "src/images/trina.svg";
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -37,28 +36,27 @@ export class Garbage extends Actor {
   }
 
   update(delta: number, size: PointInterface) {
-    this.acceleration = this.acceleration * 1;
-    this.speed = (this.speed + this.acceleration) * 0.95;
-
-    // Nueva posición
+    // Update position based on speed and acceleration
     const newPosition: PointInterface = {
-      x: this.position.x + 0,
-      y: this.position.y + this.speed * delta,
+      x: this.position.x - this.speed * delta,
+      y: this.position.y + this.acceleration * delta,
     };
 
-    // Verificación si está dentro del canvas
+    // Check if the new position is within the canvas limits
     if (checkLimits(size, newPosition)) {
       this.position = newPosition;
     } else {
       this.speed = 0;
     }
   }
-  }
+  
+
   restart() {
-    this.position = this.initialPosition;
-    this.angle = 0;
-    this.rotationSpeed = 0;
+    this.position = { ...this.initialPosition };
+    this.angle = 1;
+    this.rotationSpeed = 10;
     this.speed = 0;
     this.acceleration = 0;
+    
   }
-
+}

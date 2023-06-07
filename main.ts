@@ -4,6 +4,7 @@ import { Fish } from "./src/actors/fish";
 import { Background } from "./src/actors/background";
 import { Music } from "./src/actors/music";
 import { Score } from "./src/actors/score";
+import { Garbage } from "./src/actors/garbage";
 import { Bag } from "./src/actors/bag";
 
 window.onload = () => {
@@ -28,12 +29,22 @@ window.onload = () => {
   const bag = new Bag(
     { x: canvas.width - 200, y: canvas.height / 2 },
     { w: 40, h: 40 },
-    0,
-    0
+    5,
+    60
   );
+  const garbageItems: Garbage[] = [];
+  const numGarbageItems = 10;
+  for (let i = 0; i < numGarbageItems; i++) {
+    const garbage = new Garbage(
+      { x: Math.random() * canvas.width, y: Math.random() * canvas.height },
+      { w: 20, h: 10 },
+      5,
+      60
+    );
+    garbageItems.push(garbage);
+  }
 
-  let actors = [background, music, fps, score, fish, bag];
-
+  let actors = [background, music, fps, score, fish, ...garbageItems];
   let lastFrame = 0;
   const render = (time: number) => {
     let delta = (time - lastFrame) / 1000;
@@ -42,14 +53,23 @@ window.onload = () => {
     actors.forEach((actor) => {
       actor.update(delta, canvasSize);
     });
+
+    const collisionDetected = garbageItems.some((garbage) =>
+      checkCollision(fish, garbage)
+    );
+    if (collisionDetected) {
+      gameOver();
+      return;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const backgroundSpeed = 100;
 
     actors.forEach((actor) => {
       ctx.save();
       actor.draw(ctx, canvasSize, delta);
       ctx.restore();
     });
+
     window.requestAnimationFrame(render);
   };
 
@@ -66,4 +86,28 @@ window.onload = () => {
   document.body.addEventListener("keyup", (event) => {
     actors.forEach((actor) => actor.keyboardEventUp(event.key));
   });
+
+  function checkCollision(fish: Fish, garbage: Garbage): boolean {
+    const fishLeft = fish.position.x - fish.size.w / 2;
+    const fishRight = fish.position.x + fish.size.w / 2;
+    const fishTop = fish.position.y - fish.size.h / 2;
+    const fishBottom = fish.position.y + fish.size.h / 2;
+
+    const garbageLeft = garbage.position.x - garbage.size.w / 2;
+    const garbageRight = garbage.position.x + garbage.size.w / 2;
+    const garbageTop = garbage.position.y - garbage.size.h / 2;
+    const garbageBottom = garbage.position.y + garbage.size.h / 2;
+
+    return (
+      fishLeft < garbageRight &&
+      fishRight > garbageLeft &&
+      fishTop < garbageBottom &&
+      fishBottom > garbageTop
+    );
+  }
+
+  function gameOver() {
+    console.log("Game Over");
+    actors = [];
+  }
 };

@@ -44,7 +44,8 @@ export class Fish extends Actor {
   update(delta: number, size: PointInterface) {
     this.acceleration = this.acceleration * 1;
     this.speed = (this.speed + this.acceleration) * 0.95;
-
+    const gravity = 1.2;
+    this.speed += gravity;
     // Nueva posición
     const newPosition: PointInterface = {
       x: this.position.x + 0,
@@ -61,23 +62,26 @@ export class Fish extends Actor {
 
   keyboardEventDown(key: string) {
     if (key === "ArrowLeft") {
-      this.rotationSpeed -= 2;
     } else if (key === "ArrowRight") {
-      this.rotationSpeed += 2;
     } else if (key === "ArrowUp") {
       this.acceleration -= 10;
+      this.angle = -10; 
     } else if (key === "ArrowDown") {
       this.acceleration += 10;
+      this.angle = 10;
     }
+  
   }
 
   keyboardEventUp(key: string) {
     switch (key) {
       case "ArrowUp":
         this.acceleration = 0;
+        this.angle = -0; // Reset the angle when arrow up is released
         break;
       case "ArrowDown":
         this.acceleration = 0;
+        this.angle = -0;
         break;
     }
   }

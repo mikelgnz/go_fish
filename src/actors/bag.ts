@@ -2,9 +2,9 @@ import { SizeInterface } from "../types/size";
 import { checkLimits } from "../utils/checkLimits";
 import { converAngleToRad } from "../utils/convertAngleToRad";
 import { PointInterface } from "./../types/point.d";
-import { Actor } from "./actor";
+import { Garbage } from "./garbage";
 
-export class Bag extends Actor {
+export class Bag extends Garbage {
   public angle: number;
   public rotationSpeed: number;
   public initialPosition: PointInterface;
@@ -37,13 +37,11 @@ export class Bag extends Actor {
     );
   }
   update(delta: number, size: PointInterface) {
-    this.acceleration = this.acceleration * 1;
-    this.speed = (this.speed + this.acceleration) * 0.95;
 
     // Nueva posición
     const newPosition: PointInterface = {
-      x: this.position.x + 0,
-      y: this.position.y + this.speed * delta,
+      x: this.position.x - this.speed * delta, 
+      y: this.position.y + 0,
     };
 
     // Verificación si está dentro del canvas
