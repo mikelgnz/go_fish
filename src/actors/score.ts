@@ -1,4 +1,5 @@
 import { PointInterface } from "../types/point";
+import { SizeInterface } from "../types/size";
 import { Actor } from "./actor";
 
 export class Score extends Actor {
@@ -8,12 +9,12 @@ export class Score extends Actor {
     super(position);
   }
 
-  draw(ctx: CanvasRenderingContext2D, size: PointInterface, delta: number) {
+  draw(ctx: CanvasRenderingContext2D, size: SizeInterface, delta: number) {
     this.scorePoints += delta;
-    ctx.font = "18px American Typerwriter";
+    ctx.font = "18px Darumadrop One";
     ctx.fillStyle = "#000";
     ctx.fillText(
-      `Score: ${this.scorePoints.toFixed(0)}`,
+      `SCORE: ${this.scorePoints.toFixed(0)}`,
       this.position.x,
       this.position.y
     );

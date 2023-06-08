@@ -4,14 +4,18 @@ import { Fish } from "./src/actors/fish";
 import { Background } from "./src/actors/background";
 import { Music } from "./src/actors/music";
 import { Score } from "./src/actors/score";
-import { Garbage } from "./src/actors/garbage";
-import { Bag } from "./src/actors/bag";
+import { Garbage } from "./src/actors/dump/garbage";
+import { Bag } from "./src/actors/dump/bag";
+import { GarbageGenerator } from "./src/actors/dump/garbage_generator";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import { SizeInterface } from "./src/types/size";
+import { Can } from "./src/actors/dump/can";
 
 window.onload = () => {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
   const music = new Music();
-  const canvasSize: PointInterface = { x: canvas.width, y: canvas.height };
+  const canvasSize: SizeInterface = { w: canvas.width, h: canvas.height };
   const background = new Background(
     { x: 0, y: canvas.height / 2 },
     { w: 1440, h: 360 },
@@ -26,25 +30,14 @@ window.onload = () => {
     0,
     0
   );
-  const bag = new Bag(
-    { x: canvas.width - 200, y: canvas.height / 2 },
-    { w: 40, h: 40 },
-    5,
-    60
-  );
-  const garbageItems: Garbage[] = [];
-  const numGarbageItems = 10;
-  for (let i = 0; i < numGarbageItems; i++) {
-    const garbage = new Garbage(
-      { x: Math.random() * canvas.width, y: Math.random() * canvas.height },
-      { w: 20, h: 10 },
-      5,
-      60
-    );
-    garbageItems.push(garbage);
-  }
+  const garbageGenerator = new GarbageGenerator(canvasSize);
+  garbageGenerator.generateGarbage(10);
+  
+  
+  const garbageItems = garbageGenerator.getGarbageItems();
 
   let actors = [background, music, fps, score, fish, ...garbageItems];
+  let reload = [Fish, Garbage, Bag, Score, Can]
   let lastFrame = 0;
   const render = (time: number) => {
     let delta = (time - lastFrame) / 1000;
@@ -107,7 +100,13 @@ window.onload = () => {
   }
 
   function gameOver() {
-    console.log("Game Over");
-    actors = [];
+    Swal.fire({
+      position: "center",
+      title: "Game Over",
+      text: "Do you want to start again?",
+      icon: "error",
+      confirmButtonText: "Yes",
+    });
   }
+
 };

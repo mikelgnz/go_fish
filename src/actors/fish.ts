@@ -9,6 +9,7 @@ export class Fish extends Actor {
   public rotationSpeed: number;
   public initialPosition: PointInterface;
   public image: HTMLImageElement;
+  public buttons: { up: boolean; down: boolean };
 
   constructor(
     public position: PointInterface,
@@ -41,7 +42,7 @@ export class Fish extends Actor {
     );
   }
 
-  update(delta: number, size: PointInterface) {
+  update(delta: number, size: SizeInterface) {
     this.acceleration = this.acceleration * 1;
     this.speed = (this.speed + this.acceleration) * 0.95;
     const gravity = 1.2;
@@ -53,7 +54,7 @@ export class Fish extends Actor {
     };
 
     // Verificación si está dentro del canvas
-    if (checkLimits(size, newPosition)) {
+    if (checkLimits({ x: size.w, y: size.h }, newPosition)) {
       this.position = newPosition;
     } else {
       this.speed = 0;
@@ -65,19 +66,18 @@ export class Fish extends Actor {
     } else if (key === "ArrowRight") {
     } else if (key === "ArrowUp") {
       this.acceleration -= 10;
-      this.angle = -10; 
+      this.angle = -10;
     } else if (key === "ArrowDown") {
       this.acceleration += 10;
       this.angle = 10;
     }
-  
   }
 
   keyboardEventUp(key: string) {
     switch (key) {
       case "ArrowUp":
         this.acceleration = 0;
-        this.angle = -0; // Reset the angle when arrow up is released
+        this.angle = -0;
         break;
       case "ArrowDown":
         this.acceleration = 0;

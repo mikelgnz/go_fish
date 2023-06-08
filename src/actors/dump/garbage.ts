@@ -1,9 +1,9 @@
-import { SizeInterface } from "../types/size";
-import { checkLimits } from "../utils/checkLimits";
-import { converAngleToRad } from "../utils/convertAngleToRad";
-import { PointInterface } from "./../types/point";
+import { SizeInterface } from "../../types/size";
+import { converAngleToRad } from "../../utils/convertAngleToRad";
+import { PointInterface } from "../../types/point";
+import { Actor } from "../actor";
 
-export class Garbage {
+export class Garbage extends Actor {
   public angle: number;
   public rotationSpeed: number;
   public initialPosition: PointInterface;
@@ -13,13 +13,15 @@ export class Garbage {
     public position: PointInterface,
     public size: SizeInterface,
     public acceleration: number,
-    public speed: number
+    public speed: number,
+    public imageSrc?: string
   ) {
+    super(position);
     this.angle = 2;
     this.rotationSpeed = 10;
-    this.initialPosition = { ...position };
+    this.initialPosition = position;
     this.image = new Image();
-    this.image.src = "src/images/trina.svg";
+    this.image.src ?? imageSrc;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -35,7 +37,7 @@ export class Garbage {
     );
   }
 
-  update(delta: number, size: PointInterface) {
+  update(delta: number, size: SizeInterface) {
     // Update position based on speed and acceleration
     const newPosition: PointInterface = {
       x: this.position.x - this.speed * delta,
@@ -43,13 +45,9 @@ export class Garbage {
     };
 
     // Check if the new position is within the canvas limits
-    if (checkLimits(size, newPosition)) {
       this.position = newPosition;
-    } else {
-      this.speed = 0;
-    }
+
   }
-  
 
   restart() {
     this.position = { ...this.initialPosition };
@@ -57,6 +55,5 @@ export class Garbage {
     this.rotationSpeed = 10;
     this.speed = 0;
     this.acceleration = 0;
-    
   }
 }

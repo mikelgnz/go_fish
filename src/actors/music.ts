@@ -1,4 +1,4 @@
-import { PointInterface } from "../interfaces/point";
+import { PointInterface } from "../types/point";
 import { Actor } from "./actor";
 
 export class Music extends Actor {
