@@ -1,15 +1,12 @@
 import { FPSViewer } from "./src/actors/fps_viewer";
-import { PointInterface } from "./src/types/point.d";
 import { Fish } from "./src/actors/fish";
 import { Background } from "./src/actors/background";
 import { Music } from "./src/actors/music";
 import { Score } from "./src/actors/score";
 import { Garbage } from "./src/actors/dump/garbage";
-import { Bag } from "./src/actors/dump/bag";
 import { GarbageGenerator } from "./src/actors/dump/garbage_generator";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { SizeInterface } from "./src/types/size";
-import { Can } from "./src/actors/dump/can";
 
 window.onload = () => {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
@@ -30,24 +27,27 @@ window.onload = () => {
     0,
     0
   );
-  const garbageGenerator = new GarbageGenerator(canvasSize);
-  garbageGenerator.generateGarbage(10);
-  
-  
-  const garbageItems = garbageGenerator.getGarbageItems();
 
-  let actors = [background, music, fps, score, fish, ...garbageItems];
-  let reload = [Fish, Garbage, Bag, Score, Can]
+  const garbageManager = new GarbageGenerator(canvasSize);
+
+  let actors = [background, music, fps, score, fish];
+  let restartActor = [score, fish];
   let lastFrame = 0;
+
   const render = (time: number) => {
     let delta = (time - lastFrame) / 1000;
     lastFrame = time;
+    console.log(garbageManager.garbageItems);
+
+    garbageManager.garbageItems.forEach((actor) => {
+      actor.update(delta);
+    });
 
     actors.forEach((actor) => {
       actor.update(delta, canvasSize);
     });
 
-    const collisionDetected = garbageItems.some((garbage) =>
+    const collisionDetected = garbageManager.garbageItems.some((garbage) =>
       checkCollision(fish, garbage)
     );
     if (collisionDetected) {
@@ -56,6 +56,12 @@ window.onload = () => {
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    garbageManager.garbageItems.forEach((actor) => {
+      ctx.save();
+      actor.draw(ctx);
+      ctx.restore();
+    });
 
     actors.forEach((actor) => {
       ctx.save();
@@ -108,5 +114,4 @@ window.onload = () => {
       confirmButtonText: "Yes",
     });
   }
-
 };

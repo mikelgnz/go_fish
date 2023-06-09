@@ -13,6 +13,6 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "sweetalert2": "^11.7.11"
+    "sweetalert2": "^11.4.8"
   }
 }

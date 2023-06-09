@@ -4,11 +4,13 @@ import { Garbage } from "./garbage";
 import { SizeInterface } from "../../types/size";
 
 export class GarbageGenerator {
-  private garbageItems: Garbage[] = [];
+  public garbageItems: Garbage[] = [];
 
-  constructor(private canvasSize: SizeInterface) {}
+  constructor(private canvasSize: SizeInterface) {
+    this.generateGarbage(5);
+  }
 
-  generateGarbage(numItems: number) {
+  public generateGarbage(numItems: number) {
     for (let i = 0; i < numItems; i++) {
       const randomX = Math.random() * (this.canvasSize.w - 1000) + 1000;
       const randomY = Math.random() * this.canvasSize.h;
@@ -41,7 +43,7 @@ export class GarbageGenerator {
     return { w: garbageWidth, h: garbageHeight };
   }
 
-  private getRandomGarbageType(): typeof Garbage {
+  public getRandomGarbageType(): typeof Garbage {
     const garbageTypes: (typeof Garbage)[] = [Bag, Can];
     const randomIndex = Math.floor(Math.random() * garbageTypes.length);
     return garbageTypes[randomIndex];
@@ -49,5 +51,8 @@ export class GarbageGenerator {
 
   getGarbageItems(): Garbage[] {
     return this.garbageItems;
+  }
+  restart() {
+    this.garbageItems = [];
   }
 }

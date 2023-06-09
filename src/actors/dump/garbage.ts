@@ -37,7 +37,7 @@ export class Garbage extends Actor {
     );
   }
 
-  update(delta: number, size: SizeInterface) {
+  update(delta: number) {
     // Update position based on speed and acceleration
     const newPosition: PointInterface = {
       x: this.position.x - this.speed * delta,
