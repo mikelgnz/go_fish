@@ -15,7 +15,7 @@ export class Music extends Actor {
     this.audio.volume = 0.03;
   }
 
-  // update(delta: number) {
-  //  this.audio.play();
-  // }
+  update(delta: number) {
+    this.audio.play();
+  }
 }
