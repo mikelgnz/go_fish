@@ -7,23 +7,25 @@ export class GarbageGenerator {
   public garbageItems: Garbage[] = [];
 
   constructor(private canvasSize: SizeInterface) {
-    this.generateGarbage(5);
+    this.generateGarbage(2);
   }
 
   public generateGarbage(numItems: number) {
-    for (let i = 0; i < numItems; i++) {
-      const randomX = Math.random() * (this.canvasSize.w - 1000) + 1000;
-      const randomY = Math.random() * this.canvasSize.h;
-      const randomSize = this.getRandomSize();
-      const randomGarbageType = this.getRandomGarbageType();
-      const garbage = new randomGarbageType(
-        { x: randomX, y: randomY },
-        randomSize,
-        0,
-        60
-      );
-      this.garbageItems.push(garbage);
-    }
+    setInterval(() => {
+      for (let i = 0; i < numItems; i++) {
+        const randomX = Math.random() * (this.canvasSize.w - 1000) + 1000;
+        const randomY = Math.random() * this.canvasSize.h;
+        const randomSize = this.getRandomSize();
+        const randomGarbageType = this.getRandomGarbageType();
+        const garbage = new randomGarbageType(
+          { x: randomX, y: randomY },
+          randomSize,
+          0,
+          60
+        );
+        this.garbageItems.push(garbage);
+      }
+    }, 1500);
   }
 
   private getRandomSize(): SizeInterface {

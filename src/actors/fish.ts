@@ -45,7 +45,7 @@ export class Fish extends Actor {
   update(delta: number, size: SizeInterface) {
     this.acceleration = this.acceleration * 1;
     this.speed = (this.speed + this.acceleration) * 0.95;
-    const gravity = 1.2;
+    const gravity = 5;
     this.speed += gravity;
     // Nueva posición
     const newPosition: PointInterface = {

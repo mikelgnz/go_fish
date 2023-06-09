@@ -37,16 +37,12 @@ window.onload = () => {
   const render = (time: number) => {
     let delta = (time - lastFrame) / 1000;
     lastFrame = time;
-    console.log(garbageManager.garbageItems);
-
-    garbageManager.garbageItems.forEach((actor) => {
-      actor.update(delta);
-    });
-
     actors.forEach((actor) => {
       actor.update(delta, canvasSize);
     });
-
+    garbageManager.garbageItems.forEach((actor) => {
+      actor.update(delta);
+    });
     const collisionDetected = garbageManager.garbageItems.some((garbage) =>
       checkCollision(fish, garbage)
     );
@@ -57,18 +53,16 @@ window.onload = () => {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    garbageManager.garbageItems.forEach((actor) => {
-      ctx.save();
-      actor.draw(ctx);
-      ctx.restore();
-    });
-
     actors.forEach((actor) => {
       ctx.save();
       actor.draw(ctx, canvasSize, delta);
       ctx.restore();
     });
-
+    garbageManager.garbageItems.forEach((actor) => {
+      ctx.save();
+      actor.draw(ctx);
+      ctx.restore();
+    });
     window.requestAnimationFrame(render);
   };
 

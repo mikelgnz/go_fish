@@ -21,7 +21,6 @@
 [![Vite](https://img.shields.io/badge/vite-v4.3.9-%23A1E3D8?style=for-the-badge&logo=appveyor)](https://vite.github.io)
 [![Sweetalert2](https://img.shields.io/badge/sweetalert2-v11.4.8-%23A1E3D8?style=for-the-badge&logo=appveyor)](https://sweetalert2.github.io)
 
-
 # **Index**
 
 ---
@@ -49,7 +48,7 @@
 
 ---
 
-You are a small fish trying to escape all the garbage that is thrown into the ocean everyday.Be carful, not to hit any piece of garbage, or you'll die.
+You are a small fish trying to escape all the garbage that is thrown into the ocean everyday. Be careful, not to hit any piece of garbage, or you'll die.
 <br/>
 
 ### **Controls:**
@@ -77,13 +76,14 @@ After going around varients, like flappy bird, or Space Invaders, I decided to m
 ## **Dependencies**
 
 ---
+
 Project dependencies:
 
--   [Node](https://nodejs.org)
--   [Yarn](https://yarnpkg.com)
--   [Typescript](https://www.typescriptlang.org/)
--   [Sweetalert2](https://sweetalert2.github.io)
--   [Vite](https://vitejs.dev/)
+- [Node](https://nodejs.org)
+- [Yarn](https://yarnpkg.com)
+- [Typescript](https://www.typescriptlang.org/)
+- [Sweetalert2](https://sweetalert2.github.io)
+- [Vite](https://vitejs.dev/)
 
 <br/>
 <br/>
@@ -96,7 +96,3 @@ I would like to thank our teacher [Juan Pablo Mora Serrano](https://github.com/S
 
 <br/>
 <br/>
-
-## **Licenses**
-
----
