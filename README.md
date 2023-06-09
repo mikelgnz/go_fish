@@ -30,7 +30,6 @@
 3. [Motivation](#✦-motivation)
 4. [Dependencies](#✦-dependencies)
 5. [Thanks](#✦-thanks)
-6. [Licenses](#✦-licenses)
 
 <br/>
 <br/>

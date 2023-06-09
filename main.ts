@@ -30,8 +30,8 @@ window.onload = () => {
 
   const garbageManager = new GarbageGenerator(canvasSize);
 
-  let actors = [background, music, fps, score, fish];
-  let restartActor = [score, fish];
+  let actors = [background, fps, score, music, fish];
+  let restartActor = [score, fish, music];
   let lastFrame = 0;
 
   const render = (time: number) => {

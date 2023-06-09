@@ -9,13 +9,12 @@ export class Music extends Actor {
     this.audio = new Audio();
     this.audio.src = "src/media/gotune.mp3";
 
-    // Configuración de audio
     this.audio.autoplay = false;
     this.audio.loop = true;
     this.audio.volume = 0.03;
   }
 
-  update(delta: number) {
-    this.audio.play();
+  update() {
+   this.audio.play();
   }
 }
