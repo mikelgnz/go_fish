@@ -1,4 +1,4 @@
-![Let's go Fish!](/public/images/logogo.png)
+![Let's go Fish!](./public/images/logogo.png)
 
 ---
 
@@ -10,7 +10,7 @@
 <br/>
 <br/>
 
-![Fish!](/public/images/fish.png)
+![Fish!](./public/images/fish.png)
 
 <br/>
 <br/>
@@ -38,7 +38,7 @@
 
 ---
 
-![Fish!](/public/images/screen.png)
+![Fish!](./public/images/screen.png)
 
 <br/>
 <br/>
