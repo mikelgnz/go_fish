@@ -21,7 +21,7 @@ export class Background extends Actor {
 
     this.initialPosition = position;
     this.image = new Image();
-    this.image.src = "src/images/background.svg";
+    this.image.src = "public/images/background.svg";
   }
 
   draw(ctx: CanvasRenderingContext2D) {

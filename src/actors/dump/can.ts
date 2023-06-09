@@ -20,7 +20,7 @@ export class Can extends Garbage {
       size,
       acceleration,
       speed,
-      (imageSrc = "src/images/trina.svg")
+      (imageSrc = "public/images/trina.svg")
     );
     this.angle = 2;
     this.rotationSpeed = 10;

@@ -20,7 +20,7 @@ export class Bag extends Garbage {
       size,
       acceleration,
       speed,
-      (imageSrc = "src/images/bag.svg")
+      (imageSrc = "public/images/bag.svg")
     );
     this.angle = 2;
     this.rotationSpeed = 10;

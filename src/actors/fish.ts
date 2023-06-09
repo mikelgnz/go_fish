@@ -26,7 +26,7 @@ export class Fish extends Actor {
     };
     this.initialPosition = position;
     this.image = new Image();
-    this.image.src = "src/images/fish.svg";
+    this.image.src = "public/images/fish.svg";
   }
 
   draw(ctx: CanvasRenderingContext2D) {
