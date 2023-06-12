@@ -69,6 +69,8 @@ You are a small fish trying to escape all the garbage that is thrown into the oc
 I've built the game as a project for Core Code School. My son Eneko. He wants to be a Marine Bioligist so he wanted to make a "fish escape" game.
 
 After going around varients, like flappy bird, or Space Invaders, I decided to make the fish escape from the sea polluted with garbage.
+
+I've designed the whole game: background, the fish, the garbage.. ,
 <br/>
 <br/>
 
